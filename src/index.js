@@ -18,6 +18,10 @@ TODO:
 3.- Invocar el router para renderizar la vista correcta.
 */
 
+
+
+//El punto de partida para tu SPA sera el archivo src/index.js. Acá encontrarás algunas instrucciones y comentarios para guiarte en el inicio del desarrollo de tu aplicación.
+
 import Home from './views/Home';
 // ... import other views
 import { setRootEl, setRoutes, onURLChange } from './router.js';

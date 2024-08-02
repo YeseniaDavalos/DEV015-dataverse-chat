@@ -1,3 +1,8 @@
+//Esta carpeta generalmente contiene archivos de los componentes que representan las diferentes páginas o vistas de tu aplicación. 
+//Cada vista (view) puede tener su propio archivo JavaScript, que exporta una función que es responsable de generar los elementos del DOM.
+
+//En este archivo vas a manejar el enrutamiento de tu aplicación. Es un archivo que debes crearlo por tu cuenta.
+
 
 let ROUTES = {};
 let rootEl;
