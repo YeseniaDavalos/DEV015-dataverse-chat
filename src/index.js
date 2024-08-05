@@ -26,6 +26,8 @@ import Home from './views/Home';
 // ... import other views
 import { setRootEl, setRoutes, onURLChange } from './router.js';
 
+setRootEl(document.getElementById('root'));
+
 // Define your routes and their associated views
 const routes = {
   '/': Home,
@@ -37,14 +39,20 @@ setRoutes(routes);
 
 // Set the root element where views will be rendered
 window.addEventListener("DOMContentLoaded", () => {
-  setRootEl(/* root element */);
+  setRootEl('root');
 });
 
 
 // Handle initial URL load
 window.addEventListener("DOMContentLoaded", () => {
     // set root element
+    const rootElement = document.getElementById('root');
+    if (!rootElement) {
+      console.error('Root element not found');
+      return;
+    }
     // invoke onURLChange 
+    onURLChange(window.location);
   });
 
 
@@ -55,6 +63,7 @@ export const Home = (props) => {
     // ...
     linkEl.addEventListener('click', () => navigateTo("/about", { name: "Xochitl" }));
     // return el
+    return linkEl;
   }
 
   // Handle URL changes
