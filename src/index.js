@@ -58,29 +58,32 @@ window.addEventListener("DOMContentLoaded", () => {
 
   
 // import navigateTo
+// ...
+// return el
+// Handle URL changes
 
 export const Home = (props) => {
-    // ...
-    linkEl.addEventListener('click', () => navigateTo("/about", { name: "Xochitl" }));
-    // return el
-    return linkEl;
-  }
-
-  // Handle URL changes
-window.addEventListener('popstate', ({objetivo}) => {
-    onURLChange(/* location */);
- });
-
-
-
-
- export const Home = (props) => {
-    const el = document.createElement('div');
-    el.textContent = `¡Bienvenido a la página de inicio, ${props.name}!`;
+  // Crear el elemento div para la vista Home
+  const el = document.createElement('div');
+  el.textContent = `¡Bienvenido a la página de inicio, ${props.name || 'Visitante'}!`;
+  
+  // Si hay un id en las props, lo mostramos en la consola
+  if (props.id) {
     console.log(props.id);
-    return el;
   }
 
+  // Si existe un linkEl, agregar un evento de clic para navegar
+  const linkEl = document.createElement('a');
+  linkEl.textContent = 'Ir a la página About';
+  linkEl.href = '/about';
+  linkEl.addEventListener('click', (event) => {
+    event.preventDefault(); // Evita que el enlace recargue la página
+    navigateTo("/about", { name: "Xochitl" });
+  });
 
+  // Añadir el linkEl al elemento principal
+  el.appendChild(linkEl);
 
-  navigateTo("/", { nombre: "Xóchitl", id: "100"});
+  return el;
+};
+
