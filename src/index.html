@@ -25,8 +25,27 @@
     </nav>
     <h1></h1>
     <div class="icons">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-user"></a>
+      <dialog id="dialog">
+        <form>
+        <button type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+        <h2 id="dialogid">Api Key Admin</h2>
+        <p>From here you can manage the API Key to use</p>
+        <p>
+            <label>Api Key:
+               <input type="password" api key="api key" required />
+           </label>
+        </p>
+        <p>
+           <button type="submit" formmethod="post">Save Api Key</button>
+        </p>
+          <button id="reset" type="reset">Delete</button>
+        </p>
+      </form>
+    </dialog>
+    
+    <button id="modal">Open Modal dialog</button>
+    <p id="text"></p>
+    
     </div>
   </header>
 

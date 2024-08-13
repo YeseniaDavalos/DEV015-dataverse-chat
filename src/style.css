@@ -18,6 +18,31 @@
 }
 
 
+[aria-label="close"], [aria-label="close"]:focus {
+  background: #6F4F84;
+  color: #ffff;
+  appearance: none;
+  float: right;
+  border: 1px solid;
+  border-radius: 50%;
+}
+dialog :focus {
+  outline: 2px solid #6F4F84;
+  background: #ffff;
+}
+
+#reset {
+  background: #6F4F84;
+  color: #fff;
+}
+
+.submit {
+  background: #6F4F84;
+  color: #fff;
+}
+
+
+
 html {
   font-size: 62.5% !important;
   scroll-behavior: smooth !important;
