@@ -9,8 +9,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-  outline: none;
-  border: none;
   text-decoration: none;
   text-transform: capitalize;
   transition: .2s linear;
@@ -18,28 +16,52 @@
 }
 
 
+
+
+
+dialog#dialog {
+  border: none;
+  margin-left: 1042px;
+  margin-top: 67px;
+  border-radius: 30px;
+}
+
+.length {
+  margin-top: 10px;
+}
+
+h2#dialogid {
+  margin-bottom: 20px;
+}
+
+
 [aria-label="close"], [aria-label="close"]:focus {
   background: #6F4F84;
-  color: #ffff;
-  appearance: none;
   float: right;
   border: 1px solid;
-  border-radius: 50%;
+  border-radius: 150%;
 }
+
 dialog :focus {
   outline: 2px solid #6F4F84;
   background: #ffff;
 }
 
-#reset {
-  background: #6F4F84;
-  color: #fff;
-}
+
 
 .submit {
   background: #6F4F84;
   color: #fff;
 }
+
+
+.modal{
+  background: #F0ECE3;
+  padding: 35px;
+}
+
+
+
 
 
 
@@ -109,15 +131,17 @@ header .navbar a:hover {
   color: #ffffff;
 }
 
+
+
+
 header .icons a {
+
   font-size: 2.5rem;
   color: #471863;
   margin-left: 1.5rem;
 }
 
-header .icons a:hover {
-  color: #ffffff;
-}
+
 
 header #toggler {
   display: none;

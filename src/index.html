@@ -24,29 +24,49 @@
       <a href="#contact">Contact us</a>
     </nav>
     <h1></h1>
+
+
+
+
+
+
+
+
     <div class="icons">
       <dialog id="dialog">
-        <form>
-        <button type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
-        <h2 id="dialogid">Api Key Admin</h2>
-        <p>From here you can manage the API Key to use</p>
-        <p>
-            <label>Api Key:
-               <input type="password" api key="api key" required />
-           </label>
-        </p>
-        <p>
-           <button type="submit" formmethod="post">Save Api Key</button>
-        </p>
-          <button id="reset" type="reset">Delete</button>
-        </p>
-      </form>
-    </dialog>
-    
-    <button id="modal">Open Modal dialog</button>
-    <p id="text"></p>
-    
+        <form class="modal">
+          <button type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+          <h2 id="dialogid">Api Key Admin</h2>
+          <p >From here you can manage the API Key to use</p>
+          <p class="length">
+            <label >Api Key:
+              <input type="password" min="0" max="10" step=”1” name="api key" required />
+            </label>
+          </p>
+
+
+
+          <p class="length">
+            <button type="submit" formmethod="post">Save Api Key</button>
+            <button id="reset" type="reset">Delete</button>
+          </p>
+
+
+
+
+        </form>
+      </dialog>
+      <button id="modal">Open Modal dialog</button>
     </div>
+
+
+
+
+
+
+
+
+
   </header>
 
   <section class="home" id="home">
@@ -182,9 +202,8 @@
       <div class="highlight">Created By <span>Bárbara y Yesenia</span> | All Rights Reserved</div>
     </footer>
   </section>
-  <script src="lib/dataFunctions.js"  type="module"></script>
-  <script src="index.js" type="module"></script>
   <script src="./main.js" type="module"></script>
+  <script src="lib/dataFunctions.js" type="module"></script>
 </body>
 
 </html>
