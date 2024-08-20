@@ -12,6 +12,32 @@
 </head>
 
 <body>
+  <div id="root" class="picture"></div> <!-- This is your root element -->
+  <script src="./main.js" type="module"></script>
+  <script src="./lib/dataFunctions.js" type="module"></script>
+</body>
+
+</html>
+
+
+
+<!--
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Finder</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
   <header>
     <label for="toggler" class="fas fa-bars"></label>
     <input type="checkbox" name="" id="toggler">
@@ -33,41 +59,30 @@
 
 
     <div class="icons">
-      <dialog id="dialog">
-        <form class="modal">
-          <button type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+      <dialog id="dialog" class="modal">
+
+        <form id="saveForm">
+          <button id="jsbutton" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
           <h2 id="dialogid">Api Key Admin</h2>
-          <p >From here you can manage the API Key to use</p>
+          <p>From here you can manage the API Key to use</p>
           <p class="length">
             <label >Api Key:
-              <input type="password" min="0" max="10" step=”1” name="api key" required />
+              <input id="apiKeyInput" type="password" min="0" max="10" step=”1” name="api key" required /> 
             </label>
           </p>
 
-
-
           <p class="length">
-            <button type="submit" formmethod="post">Save Api Key</button>
+            <button type="submit">Save Api Key</button>
             <button id="reset" type="reset">Delete</button>
           </p>
-
-
-
-
         </form>
       </dialog>
       <button id="modal">Open Modal dialog</button>
     </div>
-
-
-
-
-
-
-
-
-
   </header>
+
+
+
 
   <section class="home" id="home">
     <div class="content">
@@ -81,6 +96,11 @@
     </div>
   </section>
 
+
+
+
+
+  
   <h1 class="heading" id="filterSelect"> Our Animals </h1>
   <main>
     <div class="filter-container">
@@ -123,7 +143,14 @@
     </div>
   </main>
 
+
+
+
   <div id="root" class="picture"></div>
+
+
+
+
 
   <h1 class="heading" id="stadistics"> Our Statistics</h1>
   <div class="contenedorStadisticas">
@@ -203,7 +230,9 @@
     </footer>
   </section>
   <script src="./main.js" type="module"></script>
-  <script src="lib/dataFunctions.js" type="module"></script>
+  <script src="./lib/dataFunctions.js" type="module"></script>  
 </body>
 
 </html>
+
+-->

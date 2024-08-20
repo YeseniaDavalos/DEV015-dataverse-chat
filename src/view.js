@@ -4,8 +4,6 @@ export const renderItems = (data) => {
   ul.setAttribute("itemscope", "");
   ul.setAttribute("itemtype", "https://schema.org/Thing");
 
-  console.log("ul");
-
   const liArray = data.map((item) => {
     const li = document.createElement("li");
     li.setAttribute("itemprop", "item");

@@ -1,5 +1,28 @@
-import { filterData, sortData, computeStats } from './lib/dataFunctions.js';
+import { Header } from './views/Header.js';
+import { Section } from './views/Section.js';
+import { mainFilter } from './views/mainFilter.js';
+
+
+// Seleccionar el elemento con id "root"
+const root = document.getElementById('root');
+
+// Crear el elemento Header llamando a la función Header()
+const headerElement = Header();
+const sectionElement = Section();
+const [heading, mainElement] = mainFilter();
+
+
+// Insertar el header dentro de "root"
+root.appendChild(headerElement);
+root.appendChild(sectionElement);
+root.appendChild(heading);
+root.appendChild(mainElement);
+
+
+
+/* import { filterData, sortData, computeStats } from './lib/dataFunctions.js';
 import { renderItems } from "./view.js";
+import {iconsDiv } from "./views/Pet.js"
 //import { fakeData } from './data.js';
 
 import data from "./data/dataset.js";
@@ -10,6 +33,7 @@ const root = document.querySelector("#root"); // Reemplazado getElementById con 
 // const piechart = document.querySelector("#piechart"); // Reemplazado getElementById con querySelector
 const results = document.querySelector("#results"); // Reemplazado getElementById con querySelector
 root.appendChild(showData);
+root.appendChild(iconsDiv);
 
 let filteredData = data; // Duplico la data inicial
 
@@ -67,39 +91,47 @@ filterSize.addEventListener("change", function (event) {
 const sort = document.querySelector("#ordenar"); // Reemplazado getElementById con querySelector
 sort.addEventListener("change", (event) => {
   const sortValue = event.target.value;
-  
+
   let orderData;
   if (sortValue === "asc" || sortValue === "desc") {
     orderData = sortData(filteredData, "name", sortValue);
   }
-  
+
   root.innerHTML = "";
   root.appendChild(renderItems(orderData));
 });
 
+
+
+import { setApiKey } from './lib/apiKey.js';
+
+
 const dialog = document.getElementById('dialog');
 const jsbutton = document.getElementById('jsbutton');
 const modal = document.getElementById('modal');
-const reset = document.getElementById('reset');
+const saveForm = document.getElementById('saveForm');
+const apiKeyInput = document.getElementById('apiKeyInput');
 
 modal.addEventListener('click', (event) => {
   dialog.showModal();
-  text.textContent = '';
 });
 
 jsbutton.addEventListener('click', (event) => {
   dialog.close();
-  text.innerHTML += '"JS close" closed the dialog.<br/>';
+});
+
+// Manejar el evento de enviar el formulario
+saveForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  const apiKeyValue = apiKeyInput.value.trim();
+  setApiKey(apiKeyValue); // Ahora la función está disponible
 });
 
 
-dialog.addEventListener('cancel', (event) => {
-  text.innerHTML += 'cance event happened<br/>';
-});
 
-dialog.addEventListener('close', (event) => {
-  text.innerHTML += 'close event happened<br/>';
-});
+
+
+
 
 const clear = document.querySelector("#reset-button"); // Reemplazado getElementById con querySelector
 clear.addEventListener("click", function () {
@@ -130,4 +162,4 @@ statistics.addEventListener("click", function () {
                           <p>Among them, there are also ${petSizeSmallAvg}% small ones</p>
                           <p>and ${petSizeBigAvg}% big ones</p>`;
   results.appendChild(statsDatos);
-});
+}); */

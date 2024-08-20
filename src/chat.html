@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <style>
+        header {
+            padding: 0rem 0%;
+            font-size: 26px;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #F0ECE3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #6F4F84;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            margin-top: 20px;
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            padding: 0rem 25%;
+            background: #F0ECE3;
+        }
+
+        .message-left,
+        .message-right {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .message-left {
+            justify-content: flex-start;
+        }
+
+        .message-right {
+            justify-content: flex-end;
+        }
+
+        .profile-pic {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .message-content {
+            background-color: #D9D9D9;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+            font-weight: 300;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .message-right .message-content {
+            background-color: #C7B198;
+            color: #000000;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #7d5a44;
+            border-radius: 25px;
+            padding: 10px 15px;
+            background-color: #F4F4F4;
+            margin: 15px;
+            margin-left: 25%;
+            margin-right: 25%;
+            background: #F4F4F4;
+        }
+
+        input {
+            border: none;
+            background-color: #F4F4F4;
+            outline: none;
+            font-size: 16px;
+            font-weight: 300;
+            color: #888888;
+            width: 100%;
+        }
+
+        input::placeholder {
+            color: #888888;
+        }
+
+        .send-button {
+            background-color: #7d5a44;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .send-button svg {
+            fill: #ffffff;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Estilos para la barra lateral */
+        .sidebar {
+            width: 300px;
+            background-color: #E8E3D9;
+            border-right: 1px solid #ccc;
+            padding: 20px;
+            position: fixed;
+            left: -342px;
+            top: 0;
+            bottom: 0;
+            transition: 0.3s;
+            overflow-y: auto;
+            z-index: 1;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chat-categories {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            background-color: #6F4F84;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-list {
+            margin-top: 20px;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .chat-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-name {
+            font-weight: 400;
+            font-size: 16px;
+            color: #4F2E1D;
+        }
+
+        .chat-message {
+            font-size: 14px;
+            color: #737171;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            position: relative;
+        }
+
+        .open-sidebar-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 15px;
+            z-index: 2;
+        }
+
+        .open-sidebar-btn img {
+            width: 25px;
+            height: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.open + .chat-header .open-sidebar-btn img {
+            transform: rotate(180deg);
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Chats</h2>
+        </div>
+        <div class="chat-categories">
+            <button class="category-btn">Todos</button>
+            <button class="category-btn">Grupos</button>
+        </div>
+        <div class="chat-list">
+            <!-- Aquí irán los chats -->
+            <div class="chat-item">
+                <img src="https://teckelsanimalsanctuaries.co.uk/wp-content/uploads/2024/05/wilbur3.jpg" alt="Profile"
+                    class="chat-pic">
+                <div class="chat-info">
+                    <span class="chat-name">Wilbur</span>
+                    <span class="chat-message">He's simply amazing to watch in ...</span>
+                </div>
+            </div>
+
+            <div class="chat-item">
+                <img src="https://teckelsanimalsanctuaries.co.uk/wp-content/uploads/2024/05/wilbur3.jpg" alt="Profile"
+                    class="chat-pic">
+                <div class="chat-info">
+                    <span class="chat-name">Wilbur</span>
+                    <span class="chat-message">He's simply amazing to watch in ...</span>
+                </div>
+            </div>
+
+            <div class="chat-item">
+                <img src="https://teckelsanimalsanctuaries.co.uk/wp-content/uploads/2024/05/wilbur3.jpg" alt="Profile"
+                    class="chat-pic">
+                <div class="chat-info">
+                    <span class="chat-name">Wilbur</span>
+                    <span class="chat-message">He's simply amazing to watch in ...</span>
+                </div>
+            </div>
+
+            <div class="chat-item">
+                <img src="https://teckelsanimalsanctuaries.co.uk/wp-content/uploads/2024/05/wilbur3.jpg" alt="Profile"
+                    class="chat-pic">
+                <div class="chat-info">
+                    <span class="chat-name">Wilbur</span>
+                    <span class="chat-message">He's simply amazing to watch in ...</span>
+                </div>
+            </div>
+            
+            <!-- aquí hay que duplicar el chat-item para más chats -->
+        </div>
+    </div>
+
+    <header>
+        <div class="chat-header">
+            <div class="chat-title">
+                <button class="open-sidebar-btn" onclick="toggleSidebar()">
+                    <img src="https://cdn.icon-icons.com/icons2/2090/PNG/512/show_sidebar_horizontal_icon_128225.png"
+                        alt="Toggle Sidebar">
+                </button>
+                Wilbur
+            </div>
+            <div class="chat-close-btn">X</div>
+        </div>
+    </header>
+
+    <div class="chat-messages">
+        <div class="message-right">
+            <div class="message-content">Hola, cuéntame más acerca de ti</div>
+        </div>
+
+        <div class="message-left">
+            <img src="https://teckelsanimalsanctuaries.co.uk/wp-content/uploads/2024/05/wilbur3.jpg" alt="Profile"
+                class="profile-pic">
+            <div class="message-content">
+                Just look at this handsome boy! He's simply amazing to watch in action, isn't he?
+            </div>
+        </div>
+
+        <div class="message-right">
+            <div class="message-content">Cool! Gracias.</div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <input type="text" placeholder="Envía un mensaje a Wilbur...">
+        <button class="send-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M2 21l21-9L2 3v7l15 2-15 2z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            const sidebarOpen = sidebar.classList.contains("open");
+
+            if (sidebarOpen) {
+                sidebar.classList.remove("open");
+                document.querySelector(".main-content").style.marginLeft = "0";
+            } else {
+                sidebar.classList.add("open");
+                document.querySelector(".main-content").style.marginLeft = "300px";
+            }
+        }
+    </script>
+</body>
+
+</html>
