@@ -1,47 +1,42 @@
 import { Header } from './views/Header.js';
 import { Section } from './views/Section.js';
 import { mainFilter } from './views/mainFilter.js';
+import { Footer } from './views/Footer.js';
+import { filterData, sortData } from './lib/dataFunctions.js';
+import { renderItems } from "./view.js";
+import data from "./data/dataset.js";
+import { setApiKey } from './lib/apiKey.js';
 
 
-// Seleccionar el elemento con id "root"
-const root = document.getElementById('root');
+const showData = renderItems(data);
+// const piechart = document.querySelector("#piechart"); // Reemplazado getElementById con querySelector - grafica
+const results = document.querySelector("#results"); 
 
-// Crear el elemento Header llamando a la función Header()
+const root = document.querySelector("#root"); 
+
+// Crear el elemento llamando a la función()
 const headerElement = Header();
 const sectionElement = Section();
 const [heading, mainElement] = mainFilter();
+const footerElement = Footer();
 
 
-// Insertar el header dentro de "root"
+
+// Insertar dentro de "root"
 root.appendChild(headerElement);
 root.appendChild(sectionElement);
 root.appendChild(heading);
 root.appendChild(mainElement);
-
-
-
-/* import { filterData, sortData, computeStats } from './lib/dataFunctions.js';
-import { renderItems } from "./view.js";
-import {iconsDiv } from "./views/Pet.js"
-//import { fakeData } from './data.js';
-
-import data from "./data/dataset.js";
-//import { testData } from "../test/data.js";
-
-const showData = renderItems(data); //cambiar a renderItems
-const root = document.querySelector("#root"); // Reemplazado getElementById con querySelector
-// const piechart = document.querySelector("#piechart"); // Reemplazado getElementById con querySelector
-const results = document.querySelector("#results"); // Reemplazado getElementById con querySelector
 root.appendChild(showData);
-root.appendChild(iconsDiv);
+root.appendChild(footerElement);
 
-let filteredData = data; // Duplico la data inicial
+let filteredData = data; 
 
-const filterType = document.querySelector("#filter-select"); // Reemplazado getElementById con querySelector
+const filterType = document.querySelector("#filter-select"); 
 filterType.addEventListener("change", function (event) {
   root.innerHTML = "";
 
-  filteredData = filterData(data, "pet", event.target.value); // Filtro por tipo de mascota
+  filteredData = filterData(data, "pet", event.target.value); 
 
   if (filterGender.value) {
     filteredData = filterData(filteredData, "gender", filterGender.value);
@@ -71,7 +66,7 @@ filterGender.addEventListener("change", function (event) {
   root.appendChild(renderItems(filteredData));
 });
 
-const filterSize = document.querySelector("#size-select"); // Reemplazado getElementById con querySelector
+const filterSize = document.querySelector("#size-select"); 
 filterSize.addEventListener("change", function (event) {
   root.innerHTML = "";
 
@@ -88,7 +83,7 @@ filterSize.addEventListener("change", function (event) {
   root.appendChild(renderItems(filteredData));
 });
 
-const sort = document.querySelector("#ordenar"); // Reemplazado getElementById con querySelector
+const sort = document.querySelector("#ordenar"); 
 sort.addEventListener("change", (event) => {
   const sortValue = event.target.value;
 
@@ -100,11 +95,6 @@ sort.addEventListener("change", (event) => {
   root.innerHTML = "";
   root.appendChild(renderItems(orderData));
 });
-
-
-
-import { setApiKey } from './lib/apiKey.js';
-
 
 const dialog = document.getElementById('dialog');
 const jsbutton = document.getElementById('jsbutton');
@@ -120,20 +110,14 @@ jsbutton.addEventListener('click', (event) => {
   dialog.close();
 });
 
-// Manejar el evento de enviar el formulario
+
 saveForm.addEventListener('submit', function (event) {
   event.preventDefault();
   const apiKeyValue = apiKeyInput.value.trim();
-  setApiKey(apiKeyValue); // Ahora la función está disponible
+  setApiKey(apiKeyValue); 
 });
 
-
-
-
-
-
-
-const clear = document.querySelector("#reset-button"); // Reemplazado getElementById con querySelector
+const clear = document.querySelector("#reset-button"); 
 clear.addEventListener("click", function () {
   filterType.value = "";
   filterGender.value = "";
@@ -144,7 +128,7 @@ clear.addEventListener("click", function () {
   root.appendChild(showData);
 });
 
-
+/*
 const statistics = document.querySelector("#compute-stats-btn"); // Reemplazado getElementById con querySelector
 statistics.addEventListener("click", function () {
   const statsDatos = document.createElement('p');
@@ -162,4 +146,4 @@ statistics.addEventListener("click", function () {
                           <p>Among them, there are also ${petSizeSmallAvg}% small ones</p>
                           <p>and ${petSizeBigAvg}% big ones</p>`;
   results.appendChild(statsDatos);
-}); */
+}); ¨*/

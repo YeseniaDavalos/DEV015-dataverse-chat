@@ -75,11 +75,13 @@ html {
 
 section {
   padding: 0rem 8%;
+  width: 100%;
   background: #F0ECE3;
 }
 
 .heading {
   text-align: center;
+  width: 100%;
   font-size: 4rem;
   color: #4F2E1D;
   padding: 1rem;
@@ -272,6 +274,7 @@ button:hover {
 
 div#root {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
