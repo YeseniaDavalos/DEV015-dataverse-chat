@@ -1,36 +1,40 @@
-import { Header } from './views/Header.js';
-import { Section } from './views/Section.js';
-import { mainFilter } from './views/mainFilter.js';
-import { Footer } from './views/Footer.js';
+import { Home } from './views/Home.js';
+import { Chat } from './views/Chat.js';
 import { filterData, sortData } from './lib/dataFunctions.js';
 import { renderItems } from "./view.js";
 import data from "./data/dataset.js";
 import { setApiKey } from './lib/apiKey.js';
+import { navigateTo, setRoutes } from './views/router.js';
+
+
+// Define your routes and their associated views
+const routes = {
+  '/': Home,
+  '/Chat': Chat,
+};
+
+// Assign the routes
+setRoutes(routes);
 
 
 const showData = renderItems(data);
-// const piechart = document.querySelector("#piechart"); // Reemplazado getElementById con querySelector - grafica
-const results = document.querySelector("#results"); 
 
 const root = document.querySelector("#root"); 
 
 // Crear el elemento llamando a la función()
-const headerElement = Header();
-const sectionElement = Section();
-const [heading, mainElement] = mainFilter();
-const footerElement = Footer();
+const homeElement = Home();
+const ChatElement = Chat();
 
-
-
-// Insertar dentro de "root"
-root.appendChild(headerElement);
-root.appendChild(sectionElement);
-root.appendChild(heading);
-root.appendChild(mainElement);
-root.appendChild(showData);
-root.appendChild(footerElement);
+root.appendChild(ChatElement);
+root.appendChild(homeElement);
 
 let filteredData = data; 
+
+const chatEl = document.getElementById("button-chat")
+
+chatEl.addEventListener("click", function(event) {
+    navigateTo("/chat")
+})
 
 const filterType = document.querySelector("#filter-select"); 
 filterType.addEventListener("change", function (event) {
