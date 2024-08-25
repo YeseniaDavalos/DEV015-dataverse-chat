@@ -147,14 +147,7 @@ export const Header = () => {
     headerEl.appendChild(iconsDiv);
 
 
-      // Acceder a los botones por ID
-  const buttonChat = headerEl.querySelector("#button-chat");
 
-  // Añadir event listeners para la navegación
-  buttonHome.addEventListener("click", () => navigateTo("/", {}));
-  buttonChat.addEventListener("click", () => navigateTo("/chat", {}));
-
-  
     return headerEl;
   } 
 

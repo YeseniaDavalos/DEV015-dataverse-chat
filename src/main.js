@@ -7,6 +7,7 @@ import { setApiKey } from './lib/apiKey.js';
 import { navigateTo, setRoutes } from './views/router.js';
 
 
+
 // Define your routes and their associated views
 const routes = {
   '/': Home,
@@ -25,7 +26,6 @@ const root = document.querySelector("#root");
 const homeElement = Home();
 const ChatElement = Chat();
 
-root.appendChild(ChatElement);
 root.appendChild(homeElement);
 
 let filteredData = data; 
@@ -130,6 +130,14 @@ clear.addEventListener("click", function () {
 
   root.innerHTML = "";
   root.appendChild(showData);
+});
+
+window.addEventListener('popstate', (event) => {
+  console.log('Chat', event.currentTarget.location.pathname);
+
+  const location = event.currentTarget.location.pathname
+
+  navigateTo(location); // Llama a la función onURLChange con 'location'
 });
 
 /*

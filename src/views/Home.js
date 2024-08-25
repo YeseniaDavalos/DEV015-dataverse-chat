@@ -10,7 +10,7 @@ const showData = renderItems(data);
 
 export function Home(props) {
   const headerEl = Header();
-  const sectionEl = Section(); 
+  const sectionEl = Section();
   const [h1, main] = mainFilter();
   const footerEl = Footer();
 
@@ -21,6 +21,7 @@ export function Home(props) {
   viewEl.appendChild(main);
   viewEl.appendChild(showData);
   viewEl.appendChild(footerEl);
+
 
   return viewEl;
 }
