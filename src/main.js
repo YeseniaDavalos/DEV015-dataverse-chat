@@ -1,10 +1,16 @@
 import { Home } from './views/Home.js';
 import { Chat } from './views/Chat.js';
+import NotFound from './views/NotFound.js';
+import { navigateTo, setRoutes } from './views/router.js';
+
+
+
+
 import { filterData, sortData } from './lib/dataFunctions.js';
 import { renderItems } from "./view.js";
 import data from "./data/dataset.js";
 import { setApiKey } from './lib/apiKey.js';
-import { navigateTo, setRoutes } from './views/router.js';
+
 
 
 
@@ -12,6 +18,7 @@ import { navigateTo, setRoutes } from './views/router.js';
 const routes = {
   '/': Home,
   '/Chat': Chat,
+  '/NotFound': NotFound,
 };
 
 // Assign the routes
@@ -140,22 +147,10 @@ window.addEventListener('popstate', (event) => {
   navigateTo(location); // Llama a la función onURLChange con 'location'
 });
 
-/*
-const statistics = document.querySelector("#compute-stats-btn"); // Reemplazado getElementById con querySelector
-statistics.addEventListener("click", function () {
-  const statsDatos = document.createElement('p');
-  const computedStats = computeStats(data);
-  const petCatAvg = computedStats.petCatAvg;
-  const petDogAvg = computedStats.petDogAvg;
-  const genderMaleAvg = computedStats.genderMaleAvg;
-  const genderFemaleAvg = computedStats.genderFemaleAvg;
-  const petSizeSmallAvg = computedStats.petSizeSmallAvg;
-  const petSizeBigAvg = computedStats.petSizeBigAvg;
-  statsDatos.innerHTML = `<p>We have an average of ${petCatAvg}% felines</p>
-                          <p>there is an average of ${petDogAvg}% canines,</p>
-                          <p>of which ${genderMaleAvg}% are males and</p>
-                          <p>${genderFemaleAvg}% are females.</p>
-                          <p>Among them, there are also ${petSizeSmallAvg}% small ones</p>
-                          <p>and ${petSizeBigAvg}% big ones</p>`;
-  results.appendChild(statsDatos);
-}); ¨*/
+
+
+
+
+//window.addEventListener("DOMContentLoaded", () => {
+
+//})

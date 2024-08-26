@@ -1,6 +1,7 @@
 import { Home } from './views/Home.js';
 import { setRootEl, setRoutes, onURLChange } from './views/router.js';
 import { Chat } from './views/Chat.js';
+import NotFound from './views/NotFound.js';
 //import { Header } from "./components/Header.js";
 
 
@@ -10,6 +11,7 @@ setRootEl(document.getElementById('root'));
 const routes = {
   '/': Home,
   '/Chat': Chat,
+  '/NotFound': NotFound,
 };
 
 // Assign the routes
@@ -36,18 +38,18 @@ window.addEventListener("DOMContentLoaded", () => {
 // import navigateTo
 
 // Acceder a los botones por ID
-const buttonChat = document.querySelector("#button-chat");
+//const buttonChat = document.querySelector("#button-chat");
 
 // Añadir event listeners para la navegación
-buttonChat.addEventListener("click", () => navigateTo("/chat", {}));
+//buttonChat.addEventListener("click", () => navigateTo("/chat", {}));
 
 
-export const Home = (props) => {
-  const el = document.createElement('div');
-  el.textContent = `¡Bienvenido a la página de inicio, ${props.name || 'invitado'}!`;
-  console.log(`ID: ${props.id}`);
-  return el;
-};
+//export const Home = (props) => {
+//  const el = document.createElement('div');
+//  el.textContent = `¡Bienvenido a la página de inicio, ${props.name || 'invitado'}!`;
+//  console.log(`ID: ${props.id}`);
+//  return el;
+//};
 
 
-navigateTo("/", { name: "Xóchitl", id: "100" });
+//navigateTo("/", { name: "Xóchitl", id: "100" });
