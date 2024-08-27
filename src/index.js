@@ -1,55 +1,41 @@
-import { Home } from './views/Home.js';
-import { setRootEl, setRoutes, onURLChange } from './views/router.js';
-import { Chat } from './views/Chat.js';
+import Home from './views/Home.js';
+import Chat from './views/Chat.js';
 import NotFound from './views/NotFound.js';
-//import { Header } from "./components/Header.js";
-
-
-setRootEl(document.getElementById('root'));
+import { setRootEl, setRoutes, onURLChange, navigateTo } from './router.js'; // Importa navigateTo si no estaba antes
 
 // Define your routes and their associated views
 const routes = {
   '/': Home,
-  '/Chat': Chat,
-  '/NotFound': NotFound,
+  '/chat': Chat,  // Asegúrate de usar la ruta en minúsculas para evitar errores de mayúsculas/minúsculas
+  '/notfound': NotFound,
 };
 
-// Assign the routes
+// Asigna las rutas
 setRoutes(routes);
 
-// Set the root element where views will be rendered
+// Configura el elemento raíz donde se renderizarán las vistas
 window.addEventListener("DOMContentLoaded", () => {
-  setRootEl('root');
-});
-
-// Handle initial URL load
-window.addEventListener("DOMContentLoaded", () => {
-  // set root element
   const rootElement = document.getElementById('root');
   if (!rootElement) {
     console.error('Root element not found');
     return;
   }
-  // invoke onURLChange 
+  setRootEl(rootElement);  // Se asegura de pasar el elemento real, no solo el ID
+  onURLChange(window.location); // Maneja la carga inicial de la URL
+});
+
+// Maneja los eventos popstate para la navegación del historial
+window.addEventListener("popstate", () => {
   onURLChange(window.location);
 });
 
+// Ejemplo de navegación programática (añade estos event listeners si necesitas que los botones naveguen)
+const buttonChat = document.querySelector("#button-chat");
+if (buttonChat) {
+  buttonChat.addEventListener("click", () => navigateTo("/chat"));
+}
 
-// import navigateTo
-
-// Acceder a los botones por ID
-//const buttonChat = document.querySelector("#button-chat");
-
-// Añadir event listeners para la navegación
-//buttonChat.addEventListener("click", () => navigateTo("/chat", {}));
-
-
-//export const Home = (props) => {
-//  const el = document.createElement('div');
-//  el.textContent = `¡Bienvenido a la página de inicio, ${props.name || 'invitado'}!`;
-//  console.log(`ID: ${props.id}`);
-//  return el;
-//};
-
-
-//navigateTo("/", { name: "Xóchitl", id: "100" });
+const buttonHome = document.querySelector("#button-home");
+if (buttonHome) {
+  buttonHome.addEventListener("click", () => navigateTo("/"));
+}

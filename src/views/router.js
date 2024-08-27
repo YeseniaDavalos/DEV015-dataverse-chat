@@ -1,90 +1,79 @@
-import { Chat } from "../views/Chat.js";
-import { Home } from "./Home.js";
-
 let ROUTES = {};
 let rootEl;
 
+// Asignar el elemento root
 export function setRootEl(el) {
     rootEl = el;
 }
 
+// Configurar las rutas
 export function setRoutes(routes) {
-    window.routes = routes;
+    if (typeof routes !== 'object' || !routes['/error']) {
+        throw new Error("Las rutas deben ser un objeto que defina la ruta '/error'");
+    }
+    ROUTES = routes;
 }
 
-
+// Convertir query string a objeto
 const queryStringToObject = (queryString) => {
     const params = new URLSearchParams(queryString);
     return Object.fromEntries(params.entries());
 };
 
-//const queryStringToObject = (queryString) => {
-//    const params = new URLSearchParams(queryString);
-//    const queryObject = {};
-//    for (const [key, value] of params) {
-//      queryObject[key] = value;
-//    }
-//   return queryObject;
-// };
-
-
-
+// Renderizar la vista
 const renderView = (pathname, props = {}) => {
     if (!rootEl) {
         throw new Error('Root element is not set.');
     }
 
-    // Clear the root element
+    // Limpiar el elemento root
     rootEl.innerHTML = '';
 
-    // Find the correct view in ROUTES for the pathname
-    const view = ROUTES[pathname] || ROUTES['/NotFound'];
+    // Encontrar la vista correcta en ROUTES para el pathname
+    const view = ROUTES[pathname] || ROUTES['/error'];
 
-    // Render the correct view passing the value of props
+    // Renderizar la vista pasando los props
     const viewEl = view(props);
 
-    // Add the view element to the DOM root element
+    // Añadir el elemento de vista al elemento root en el DOM
     rootEl.appendChild(viewEl);
 };
 
-
-
-
+// Cambiar la URL y renderizar la vista
 export function onURLChange(location) {
-    console.log("location", location.pathname)
-    console.log(queryStringToObject(location.search));
-    const path = location.pathname;
-    console.log("location path", location.pathname)
+    const { pathname, search } = location;
+    const queryObject = queryStringToObject(search);
+    renderView(pathname, queryObject);
 }
 
+// Navegar a una ruta específica
+export const navigateTo = (pathname, props = {}) => {
+    window.history.pushState({}, pathname, window.location.origin + pathname + objectToQueryString(props));
+    renderView(pathname, props);
+  };
 
-//    export const onURLChange = (location) => {
-//        const { pathname, search } = location;
-        // Convert the search params to an object
-//        const queryObject = queryStringToObject(search);
-        // Render the view with the pathname and query object
-//        renderView(pathname, queryObject);
-//    };
+  
 
-
-
-    //switch (path) {
-    //  case "/chat":
-    //      root.replaceChildren()
-    //      const chatEl = Chat()
-    //      root.appendChild(chatEl)
-    //      break
-    //  case "/":
-    //       root.replaceChildren()
-    //       const homeEl = Home()
-    //       root.appendChild(homeEl)
-    //       break
-    //  }
-    //}
-
-
-
-    export function navigateTo(path, props = {}) {
-        window.history.pushState({}, path, window.location.origin + path);
-        onURLChange(window.location);
+  // función específica para convertir un objeto a una query string.
+  //Manejo de Query Strings: Su implementación permite convertir 
+  //objetos a query strings y viceversa, lo que puede ser útil si necesitas reflejar estados o datos en la URL.
+  export const objectToQueryString = (props) => {
+    if (Object.keys(props).length !== 0) {
+      let str = '?';
+      for (const i in props) {
+        str += i + '=' + props[i] + '&';
+      }
+  
+      if (str.endsWith("&")) {
+        str = str.slice(0, -1);
+      }
+  
+      return str;
+    } else {
+      return '';
     }
+  }
+  
+// Configurar la escucha de cambios en la URL
+// addEventListener es generalmente más versátil y preferido por su capacidad de añadir múltiples listeners al mismo evento.
+window.addEventListener('popstate', () => onURLChange(window.location));

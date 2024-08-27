@@ -22,7 +22,7 @@ export function Home(props) {
   viewEl.appendChild(showData);
   viewEl.appendChild(footerEl);
 
-  const chatEl = document.getElementById("button-chat")
+  const chatEl = viewEl.getElementById("button-chat")
 
   chatEl.addEventListener("click", function(event) {
       navigateTo("/chat")

@@ -37,11 +37,11 @@ root.appendChild(homeElement);
 
 let filteredData = data; 
 
-const chatEl = document.getElementById("button-chat")
+//const chatEl = document.getElementById("button-chat")
 
-chatEl.addEventListener("click", function(event) {
-    navigateTo("/chat")
-})
+//chatEl.addEventListener("click", function(event) {
+//    navigateTo("/chat")
+//})
 
 const filterType = document.querySelector("#filter-select"); 
 filterType.addEventListener("change", function (event) {
