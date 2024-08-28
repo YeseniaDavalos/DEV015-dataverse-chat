@@ -5,14 +5,9 @@ import { mainFilter } from "../components/mainFilter.js";
 import { Footer } from "../components/Footer.js";
 import { renderItems } from "../view.js";
 import { filterData, sortData } from '../lib/dataFunctions.js';
-import { setApiKey } from '../lib/apiKey.js';
 import data from "../data/dataset.js";
 import { navigateTo } from '../router.js';
 
-
-
-//const showData = renderItems(data);
-//export function Home(props) {
 export function Home() {
   const headerEl = Header();
   const sectionEl = Section();
@@ -24,17 +19,6 @@ export function Home() {
   viewEl.appendChild(sectionEl);
   viewEl.appendChild(h1);
   viewEl.appendChild(main);
-  //viewEl.appendChild(showData);
-  //viewEl.appendChild(footerEl);
-
-
-
-  //1. Integrar el Filtro en Home.js
-  //2. Crear los Elementos y Añadir Event Listeners
-  //3. Mover la Lógica del DOM a Home.js
-  //4. Implementación
-
-
 
   // Mostrar datos iniciales
   let filteredData = data;
@@ -92,45 +76,13 @@ export function Home() {
     viewEl.appendChild(showData);
   });
 
-  // Modal y clave de API
-  const dialog = main.querySelector('#dialog');
-  const jsbutton = main.querySelector('#jsbutton');
-  const modal = main.querySelector('#modal');
-  const saveForm = main.querySelector('#saveForm');
-  const apiKeyInput = main.querySelector('#apiKeyInput');
-
-  modal.addEventListener('click', () => {
-    dialog.showModal();
-  });
-
-  jsbutton.addEventListener('click', () => {
-    dialog.close();
-  });
-
-  saveForm.addEventListener('submit', function (event) { //aqui usamos event
-    event.preventDefault(); // Esto previene que el formulario se envíe automáticamente.
-    const apiKeyValue = apiKeyInput.value.trim();
-    setApiKey(apiKeyValue);
-  });
-  
-
-  viewEl.appendChild(footerEl);
-
-  //const chatEl = viewEl.getElementById("button-chat")
-  //chatEl.addEventListener("click", function (event) {
-  //  navigateTo("/chat")
-  //})
-
-
-  // Ejemplo de navegación programática (añade estos event listeners si necesitas que los botones naveguen)
-  const buttonChat = viewEl.querySelector("#button-chat"); //elementView
+  // Botón de chat
+  const buttonChat = viewEl.querySelector("#button-chat"); 
   if (buttonChat) {
     buttonChat.addEventListener("click", () => navigateTo("/chat"));
   }
 
+  viewEl.appendChild(footerEl);
+
   return viewEl;
 }
-
-
-//quitar los even si no los vamos a utilizar
-
