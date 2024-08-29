@@ -1,3 +1,5 @@
+import { navigateTo } from '../router.js';
+
 export const renderItems = (data) => {
 
   const ul = document.createElement("ul");
@@ -17,7 +19,7 @@ export const renderItems = (data) => {
     const imageUrl = document.createElement("img");
     imageUrl.setAttribute("src", item.imageUrl);
     imageUrl.setAttribute("alt", item.name);
-    imageUrl.className = "card-image" 
+    imageUrl.className = "card-image"
     divImg.appendChild(imageUrl);
 
     const dl = document.createElement("dl");
@@ -54,6 +56,20 @@ export const renderItems = (data) => {
     ddPetSize.setAttribute("itemprop", "petSize");
     dl.appendChild(ddPetSize);
     ddPetSize.innerHTML = item.facts["petSize"];
+
+
+    // Crear botón de chat
+    const chat = document.createElement('button');
+    chat.classList.add('icons');
+    chat.id = 'button-chat';
+    chat.textContent = 'Pet Talk';
+
+    li.appendChild(chat);
+
+    // Añadir los event listeners para el chat 
+    chat.addEventListener('click', () => 
+      navigateTo("/chat", { id: item.id })
+    );
 
     return li;
   });

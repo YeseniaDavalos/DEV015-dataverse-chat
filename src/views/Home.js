@@ -6,7 +6,7 @@ import { Footer } from "../components/Footer.js";
 import { renderItems } from "../view.js";
 import { filterData, sortData } from '../lib/dataFunctions.js';
 import data from "../data/dataset.js";
-import { navigateTo } from '../router.js';
+
 
 export function Home() {
   const headerEl = Header();
@@ -76,11 +76,7 @@ export function Home() {
     viewEl.appendChild(showData);
   });
 
-  // Botón de chat
-  const buttonChat = viewEl.querySelector("#button-chat"); 
-  if (buttonChat) {
-    buttonChat.addEventListener("click", () => navigateTo("/chat"));
-  }
+
 
   viewEl.appendChild(footerEl);
 

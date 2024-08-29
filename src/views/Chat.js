@@ -1,5 +1,27 @@
 // src/views/Chat.js
+//import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
+import { navigateTo } from '../router.js';
 
+export function Chat() {
+  const viewEl = document.createElement('div');
+  viewEl.textContent = 'aqui va a ir mi chat :D';
+  return viewEl;
+}
+
+// Definir funciones/componentes similares para otras rutas
+
+
+
+const buttonHome = document.querySelector("#button-home");
+if (buttonHome) {
+  buttonHome.addEventListener("click", () => navigateTo("/"));
+}
+
+
+
+
+
+/*
 import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
 import { navigateTo } from '../router.js';
 
@@ -70,25 +92,8 @@ export function Chat(props) {
   return viewEl;
 }
 
-
-  
-
+*/
 
 
 
-// src/views/About.js
 
-//export function Chat() {
-//  const viewEl = document.createElement('div');
-//  viewEl.textContent = 'aqui va a ir mi chat :D';
- // return viewEl;
-//}
-  
-// Definir funciones/componentes similares para otras rutas
-
-
-  
-//const buttonHome = document.querySelector("#button-home");
-//if (buttonHome) {
-//  buttonHome.addEventListener("click", () => navigateTo("/"));
-//}
