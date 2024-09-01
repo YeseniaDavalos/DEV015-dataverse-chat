@@ -6,13 +6,15 @@ export function setRootEl(el) {
   rootEl = el;
 }
 
-// Configurar las rutas
-export function setRoutes(routes) {
+export const setRoutes = (routes) => {
   if (typeof routes !== 'object') {
-    throw new Error("Las rutas deben ser un objeto que defina la ruta '/error'");
+    throw new Error('Routes should be an object.');
+  }
+  if (!routes['/NotFound']) { // Aquíva la ruta
+    throw new Error('Routes should define an /NotFound route.');
   }
   ROUTES = routes;
-}
+};
 
 // Convertir query string a objeto
 const queryStringToObject = (queryString) => {
@@ -45,16 +47,13 @@ const renderView = (pathname, props = {}) => {
   if (!rootEl) {
     throw new Error('Root element is not set.');
   }
-
   // Limpiar el elemento root
   rootEl.innerHTML = '';
-
+  console.log(ROUTES);
   // Encontrar la vista correcta en ROUTES para el pathname
-  const view = ROUTES[pathname] || ROUTES['/error'];
-
+  const view = ROUTES[pathname] || ROUTES['/NotFound'];
   // Renderizar la vista pasando los props
   const viewEl = view(props);
-
   // Añadir el elemento de vista al elemento root en el DOM
   rootEl.appendChild(viewEl);
 };
@@ -68,10 +67,14 @@ export function onURLChange(location) {
 
 // Navegar a una ruta específica
 export const navigateTo = (pathname, props = {}) => {
+  const isRouteDefined = ROUTES.hasOwnProperty(pathname);
+
+  if (!isRouteDefined) {
+    pathname = '/NotFound';
+  }
+
   window.history.pushState({}, pathname, window.location.origin + pathname + objectToQueryString(props));
   renderView(pathname, props);
 };
 
-// Configurar la escucha de cambios en la URL
-// addEventListener es generalmente más versátil y preferido por su capacidad de añadir múltiples listeners al mismo evento.
 window.addEventListener('popstate', () => onURLChange(window.location));

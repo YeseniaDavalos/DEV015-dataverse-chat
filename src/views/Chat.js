@@ -1,5 +1,6 @@
-// src/views/Chat.js
+//src/views/Chat.js
 //import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
+/*
 import { navigateTo } from '../router.js';
 
 export function Chat() {
@@ -10,19 +11,17 @@ export function Chat() {
 
 // Definir funciones/componentes similares para otras rutas
 
-
-
 const buttonHome = document.querySelector("#button-home");
 if (buttonHome) {
   buttonHome.addEventListener("click", () => navigateTo("/"));
 }
 
+*/
 
 
 
 
-/*
-import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
+//import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
 import { navigateTo } from '../router.js';
 
 
@@ -46,7 +45,7 @@ export function Chat(props) {
 
   // Mensaje inicial
   const message = document.createElement('p');
-  message.textContent = `You are now chatting with ${props.name || 'Wilbur'}.`;
+  message.textContent = `You are now chatting with ${props.name || 'name'}.`;
   chatContainer.appendChild(message);
 
   viewEl.appendChild(chatContainer);
@@ -92,7 +91,6 @@ export function Chat(props) {
   return viewEl;
 }
 
-*/
 
 
 

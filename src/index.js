@@ -8,7 +8,7 @@ import { setRootEl, setRoutes, onURLChange } from './router.js'; // Importa navi
 const routes = {
   '/': Home,
   '/chat': Chat,
-  '/notfound': NotFound,
+  '/NotFound': NotFound,
 };
 
 // Asigna las rutas

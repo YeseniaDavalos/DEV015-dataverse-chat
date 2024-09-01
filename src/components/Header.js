@@ -139,7 +139,7 @@ export const Header = () => {
   //headerEl.appendChild(chat);
   headerEl.appendChild(iconsDiv);
 
-  // Añadir los event listeners para el chat y el modal
+  // Añadir los event listeners para el modal
 
     modalButton.addEventListener('click', () => {
         dialog.showModal();
