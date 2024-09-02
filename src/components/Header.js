@@ -95,6 +95,11 @@ export const Header = () => {
     labelForInput.appendChild(apiKeyInput);
     lengthParagraph.appendChild(labelForInput);
 
+    // Crear el párrafo con el mensaje sobre la longitud de la API Key
+const apiKeyLengthInfo = document.createElement('p');
+apiKeyLengthInfo.textContent = 'The API Key must be at least 10 characters.';
+apiKeyLengthInfo.classList.add('api-key-info');
+
     // Crear el segundo párrafo para los botones de submit y reset
     const buttonsParagraph = document.createElement('p');
     buttonsParagraph.classList.add('length');
@@ -116,6 +121,7 @@ export const Header = () => {
     saveForm.appendChild(title);
     saveForm.appendChild(description);
     saveForm.appendChild(lengthParagraph);
+    saveForm.appendChild(apiKeyLengthInfo);
     saveForm.appendChild(buttonsParagraph);
 
     // Añadir el formulario dentro del dialog
@@ -153,6 +159,10 @@ export const Header = () => {
         event.preventDefault();
         console.log('Form submitted');
         dialog.close();
+    });
+
+    resetButton.addEventListener('click', () => {
+        alert('API Key deleted successfully!');
     });
 
     return headerEl;

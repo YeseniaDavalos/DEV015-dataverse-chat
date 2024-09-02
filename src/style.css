@@ -61,7 +61,14 @@ dialog :focus {
 }
 
 
-
+.api-key-info {
+  color: #555;            
+  font-size: 16px;      
+  font-style: italic;     
+  margin-top: 10px;      
+  margin-bottom: 10px;    
+  margin-left: 120px;
+}
 
 
 
@@ -245,6 +252,9 @@ select:hover {
   background-color: #8566A1;
 }
 
+input#apiKeyInput {
+margin-left: 20px;
+}
 
 #button-container {
   display: flex;
@@ -262,6 +272,10 @@ button {
   background-color: #471863;
   color: white;
   transition: background-color 0.3s ease;
+}
+
+button#reset{
+  margin-left: 10px;
 }
 
 button:hover {
