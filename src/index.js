@@ -1,6 +1,7 @@
 import { Home } from './views/Home.js';
 import { Chat } from './views/Chat.js';
 import NotFound from './views/NotFound.js';
+import { ApiKey } from "./views/ApiKey.js";
 import { setRootEl, setRoutes, onURLChange } from './router.js'; // Importa navigateTo si no estaba antes
 
 // Define las rutas
@@ -9,6 +10,7 @@ const routes = {
   '/': Home,
   '/chat': Chat,
   '/NotFound': NotFound,
+  '/api-key': ApiKey,
 };
 
 // Asigna las rutas
