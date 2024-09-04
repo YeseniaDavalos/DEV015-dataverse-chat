@@ -2,28 +2,36 @@ import { navigateTo } from "../router.js";
 import { setApiKey, getApiKey } from "../lib/apiKey.js";
 
 /**
- * ApiKey is a function component that creates and returns a view element.
+ * ApiKey is a function component that crea y returns a view element.
  * @returns {HTMLElement} - The HTML element representing the ApiKey view.
  */
 export function ApiKey() {
-  //Creamos la vista
+  // Creamos la vista
   const apiKeyView = document.createElement("div");
   apiKeyView.classList.add("apiKey");
 
-  //Cambiamos el título y el favicon
+  // Cambiamos el título y el favicon
   document.title = "ApiKey";
-  document.querySelector("[type='image/x-icon']").href =
-    "assets/logos/logo-color.svg";
+  
+  let faviconElement = document.querySelector("[type='image/x-icon']");
+  if (!faviconElement) {
+    // Si no existe, lo creamos
+    faviconElement = document.createElement('link');
+    faviconElement.rel = 'icon';
+    faviconElement.type = 'image/x-icon';
+    document.head.appendChild(faviconElement);
+  }
+  faviconElement.href = "assets/logos/logo-color.svg";
 
-  //Desarrollamos la estructura de la vista
+  // Desarrollamos la estructura de la vista
   apiKeyView.innerHTML = `
       <div class="containerForm">
         <div class="containerForm__logo">
-            <img src="../assets/logos/logo-color.svg" class="containerForm__logo__image" alt="Logo" />
-            <h1 class="containerForm__logo__title">TechGenius</h1>
+            <!-- Agregamos el logo aquí -->
+            <img src="img/Logo (1).png" alt="Logo" class="containerForm__logo__image">
+            <h1 class="containerForm__logo__title">Api Key Admin</h1>
         </div>
-        <p class="containerForm__description">Conversa con la tecnología de programación preferida. 
-        Ingresa tu API KEY y descubre mucho más sobre la tecnología.</p>
+        <p class="containerForm__description">From here you can manage the API Key to use</p>
         <label for="apikey" class="containerForm__label">API KEY</label>
         <input type="text" class="containerForm__input" id="apikey" placeholder="Ingresa tu API KEY" required/>
         <div class="containerForm__button">
@@ -38,26 +46,33 @@ export function ApiKey() {
       </div>
   `;
 
-  //getElementsAndEvents is a function that sets up the necessary events and behaviors for the elements within the component's view
-  const getElementsAndEvents = () => {
+  // Asegúrate de que el DOM esté completamente cargado
+  setTimeout(() => {
+    // Configurar eventos y comportamientos adicionales
     const inputElement = document.getElementById("apikey");
     const buttonSave = document.getElementById("button__save");
     const buttonBack = document.getElementById("button__back");
     const buttonClear = document.getElementById("button__clear");
     const containerForm = document.querySelector(".containerForm");
+
+    // Verifica si los elementos existen antes de proceder
+    if (!containerForm || !inputElement) {
+      console.error("containerForm o inputElement no se encontró en el DOM.");
+      return;
+    }
+
     const inputMessage = document.createElement("span");
     inputMessage.classList.add("input__message");
     containerForm.insertBefore(inputMessage, inputElement);
 
-    let APIKEY;
+    const updateMaskedApiKey = (apiKey) => {
+      return `${apiKey.slice(0, 3)}${"•".repeat(apiKey.length - 6)}${apiKey.slice(-3)}`;
+    };
 
     // Obtener y enmascarar la API key guardada
-    APIKEY = getApiKey();
+    let APIKEY = getApiKey();
     if (APIKEY) {
-      const maskedApiKey = `${APIKEY.slice(0, 3)}${"•".repeat(
-        APIKEY.length - 6
-      )}${APIKEY.slice(-3)}`;
-      inputElement.value = maskedApiKey;
+      inputElement.value = updateMaskedApiKey(APIKEY);
     }
 
     // Botón guardar
@@ -66,10 +81,7 @@ export function ApiKey() {
 
       if (APIKEY.length >= 10) {
         setApiKey(APIKEY);
-        const maskedApiKey = `${APIKEY.slice(0, 3)}${"•".repeat(
-          APIKEY.length - 6
-        )}${APIKEY.slice(-3)}`;
-        inputElement.value = maskedApiKey;
+        inputElement.value = updateMaskedApiKey(APIKEY);
         inputMessage.textContent = "¡API key guardada con éxito!";
       } else {
         inputMessage.textContent = `La API key debe tener al menos 10 caracteres.`;
@@ -86,7 +98,8 @@ export function ApiKey() {
     buttonBack.addEventListener("click", () => {
       navigateTo("/");
     });
-  };
+  }, 0); // Espera un ciclo de evento para asegurar que el DOM esté listo
 
-  return { view: apiKeyView, getElementsAndEvents };
+  // Retorna solo el nodo DOM
+  return apiKeyView;
 }

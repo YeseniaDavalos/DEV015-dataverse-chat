@@ -1,97 +1,81 @@
-//src/views/Chat.js
-//import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
-/*
-import { navigateTo } from '../router.js';
+import data from '../data/dataset.js';
 
-export function Chat() {
-  const viewEl = document.createElement('div');
-  viewEl.textContent = 'aqui va a ir mi chat :D';
-  return viewEl;
-}
+import { Nav } from "../components/Nav.js";
+import { navigateTo } from "../router.js";
+import { ChatIndividual } from "../components/ChatIndividual.js";
 
-// Definir funciones/componentes similares para otras rutas
-
-const buttonHome = document.querySelector("#button-home");
-if (buttonHome) {
-  buttonHome.addEventListener("click", () => navigateTo("/"));
-}
-
-*/
-
-
-
-
-//import data from "../data/dataset.js"; // Asegurar de tener el conjunto de datos disponible
-import { navigateTo } from '../router.js';
+/**
+ * Chat is a function component that creates and returns a view element.
+ * @param {object} props - The properties of the view.
+ * @returns {HTMLElement} - The HTML element representing the Chat view.
+ */
 
 
 export function Chat(props) {
-  const viewEl = document.createElement('div');
+  // Creamos la vista
+  const chatView = document.createElement("div");
+  chatView.classList.add("chat");
 
-  // Título del Chat
-  const title = document.createElement('h2');
-  title.textContent = `Chat with ${props.name || 'Anonymous'}`;
-  viewEl.appendChild(title);
+  // Añadimos los componentes a la vista
+  chatView.appendChild(Nav());
+  const mainElement = document.createElement("main");
+  mainElement.classList.add("chat__main");
+  chatView.appendChild(mainElement);
+  mainElement.appendChild(ChatIndividual(props));
 
-  // Crear un contenedor para los mensajes
-  // Crea estilos Css para los mensajes
-  const chatContainer = document.createElement('div');
-  chatContainer.classList.add('chat-container');
-  chatContainer.style.overflowY = 'auto';  // Añadir scroll si es necesario
-  chatContainer.style.maxHeight = '300px';  // Limitar la altura si es necesario
-  chatContainer.style.border = '1px solid #ddd';  // Para visualizar el contenedor
-  chatContainer.style.padding = '10px';
-  chatContainer.style.marginBottom = '10px';
+  // Localizamos el item en el dataset
+  const itemData = data.find((item) => item.id === props.id);
 
-  // Mensaje inicial
-  const message = document.createElement('p');
-  message.textContent = `You are now chatting with ${props.name || 'name'}.`;
-  chatContainer.appendChild(message);
+  if (!itemData) {
+    navigateTo("/404");
+    return chatView;
+  }
 
-  viewEl.appendChild(chatContainer);
+  // Añadimos el título, el favicon y hacemos disponible el ícono del input
+  document.title = `Chat con ${itemData.name}`;
+  let faviconElement = document.querySelector("[type='image/x-icon']");
+  if (!faviconElement) {
+    // Si no existe, lo creamos
+    faviconElement = document.createElement('link');
+    faviconElement.rel = 'icon';
+    faviconElement.type = 'image/x-icon';
+    document.head.appendChild(faviconElement);
+  }
+  faviconElement.href = itemData.imageUrl || 'ruta-a-imagen-default.svg';
+  
+  
+  document.querySelector("head").innerHTML += `
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+  `;
 
-  // Crear un contenedor para el input y el botón de envío
-  const inputContainer = document.createElement('div');
-  inputContainer.style.display = 'flex';
+  // Creamos la estructura de información adicional
+  const dataElement = document.createElement("li");
+  dataElement.classList.add("data__container");
+  dataElement.setAttribute("itemscope", "");
+  dataElement.setAttribute("itemtype", "https://schema.org/CreativeWork");
+  dataElement.setAttribute("data-id", itemData.id);
 
-  // Crear un campo de entrada para enviar mensajes
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'Type your message...';
-  input.style.flex = '1';
-  input.style.marginRight = '10px';  // Espacio entre input y botón
-  inputContainer.appendChild(input);
+  dataElement.innerHTML = `
+      <div class="data__image">
+        <img class="data__image__background" src="${itemData.imageUrl}" alt="${itemData.name}" itemprop="image"/>
+      </div>
+      <div class="data__text">
+        <div class="data__text__title">
+          <h3 id="title__name" itemprop="name">${itemData.name}</h3>
+        </div>
+        <p class="data__text__description" itemprop="description">${itemData.description}</p>
+      </div>
+    `;
 
-  // Botón para enviar mensajes
-  const sendButton = document.createElement('button');
-  sendButton.textContent = 'Send';
-  inputContainer.appendChild(sendButton);
+  mainElement.appendChild(dataElement);
 
-  viewEl.appendChild(inputContainer);
+  //getElementsAndEvents is a function that sets up the necessary events and behaviors for the elements within the component's view
+  const getElementsAndEvents = () => {};
 
-  // Event listener para enviar mensajes
-  sendButton.addEventListener('click', () => {
-    if (input.value.trim()) {
-      const userMessage = document.createElement('p');
-      userMessage.textContent = `You: ${input.value}`;
-      chatContainer.appendChild(userMessage);
-      input.value = ''; // Limpiar el campo de entrada
-
-      // Forzar el scroll hacia abajo
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-  });
-
-  // Botón para regresar a la página principal
-  const buttonHome = document.createElement('button');
-  buttonHome.textContent = 'Go Back To Home';
-  buttonHome.addEventListener('click', () => navigateTo("/"));
-  viewEl.appendChild(buttonHome);
-
-  return viewEl;
+  // Aquí devolvemos directamente el elemento `chatView`
+  return chatView;
 }
 
 
-
-
-
+//se elimino la linea que contiene Creado en: undefined Autor: undefined Porcentaje de usuarios: undefined
+//undefined undefined

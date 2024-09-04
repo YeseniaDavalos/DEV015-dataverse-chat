@@ -49,11 +49,16 @@ const renderView = (pathname, props = {}) => {
   }
   // Limpiar el elemento root
   rootEl.innerHTML = '';
-  console.log(ROUTES);
   // Encontrar la vista correcta en ROUTES para el pathname
   const view = ROUTES[pathname] || ROUTES['/NotFound'];
   // Renderizar la vista pasando los props
   const viewEl = view(props);
+
+  // Agregar verificación de que viewEl es un nodo válido
+  if (!(viewEl instanceof Node)) {
+    throw new Error('La vista no devolvió un nodo válido. Verifica la función de vista correspondiente.');
+  }
+
   // Añadir el elemento de vista al elemento root en el DOM
   rootEl.appendChild(viewEl);
 };
