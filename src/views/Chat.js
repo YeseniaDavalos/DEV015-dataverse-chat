@@ -87,9 +87,12 @@ export function Chat(props) {
   buttonHome.textContent = 'Go Back To Home';
   buttonHome.addEventListener('click', () => navigateTo("/"));
   viewEl.appendChild(buttonHome);
+  
 
   return viewEl;
 }
+
+
 
 
 
