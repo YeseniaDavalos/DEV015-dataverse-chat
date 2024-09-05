@@ -1,7 +1,7 @@
 import { navigateTo } from "../router.js";
 
 export const Nav = () => {
-  const logoPath = 'img/Logo.png'; // Asegúrate de que la ruta sea correcta
+  const logoPath = 'img/Logo.png';
 
   const navContainer = document.createElement("div");
   navContainer.classList.add("nav");
@@ -9,7 +9,7 @@ export const Nav = () => {
   navContainer.innerHTML = `
     <div class="nav__logo">
       <img class="nav__logo__image" src="${logoPath}" alt="Dataverse"/>
-      <h2>PetGenius</h2>
+      <h2>Pet Genius</h2>
     </div>
     <div class="nav__btn">
       <button class="nav__btn__panel" id="btn_panel">Chat Grupal</button>

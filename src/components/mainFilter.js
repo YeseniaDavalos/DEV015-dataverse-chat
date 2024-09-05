@@ -1,18 +1,14 @@
 export const mainFilter = () => {
-  // Crear el h1 con clase "heading" y id "filterSelect"
   const h1 = document.createElement('h1');
   h1.classList.add('heading');
   h1.id = 'filterSelect';
   h1.textContent = 'Our Animals';
 
-  // Crear el main
   const main = document.createElement('main');
 
-  // Crear el div con clase "filter-container"
   const filterContainerDiv = document.createElement('div');
   filterContainerDiv.classList.add('filter-container');
 
-  // Crear el h2 con clase "handle" y span con clase "label-style"
   const h2 = document.createElement('h2');
   h2.classList.add('handle');
     
@@ -22,11 +18,9 @@ export const mainFilter = () => {
 
   h2.appendChild(span);
 
-  // Crear el div con clase "content"
   const contentDiv = document.createElement('div');
   contentDiv.classList.add('content');
 
-  // Crear el primer select (filter-select)
   const filterSelectLabel = document.createElement('label');
   filterSelectLabel.setAttribute('for', 'filter-select');
 
@@ -53,7 +47,6 @@ export const mainFilter = () => {
   contentDiv.appendChild(filterSelectLabel);
   contentDiv.appendChild(filterSelect);
 
-  // Crear el segundo select (gender-select)
   const genderSelectLabel = document.createElement('label');
   genderSelectLabel.setAttribute('for', 'gender-select');
 
@@ -81,7 +74,6 @@ export const mainFilter = () => {
   contentDiv.appendChild(genderSelectLabel);
   contentDiv.appendChild(genderSelect);
 
-  // Crear el tercer select (size-select)
   const sizeSelectLabel = document.createElement('label');
   sizeSelectLabel.setAttribute('for', 'size-select');
 
@@ -108,7 +100,6 @@ export const mainFilter = () => {
   contentDiv.appendChild(sizeSelectLabel);
   contentDiv.appendChild(sizeSelect);
 
-  // Crear el cuarto select (ordenar)
   const sortSelectLabel = document.createElement('label');
   sortSelectLabel.setAttribute('for', 'ordenar');
 
@@ -136,26 +127,16 @@ export const mainFilter = () => {
   contentDiv.appendChild(sortSelectLabel);
   contentDiv.appendChild(sortSelect);
 
-  // Crear el contenedor del botón
   const buttonContainerDiv = document.createElement('div');
   buttonContainerDiv.id = 'button-container';
 
   const clearButton = document.createElement('button');
   clearButton.id = 'reset-button';
   clearButton.textContent = 'Clear';
-
   buttonContainerDiv.appendChild(clearButton);
-
-  // Añadir el buttonContainerDiv al contentDiv
   contentDiv.appendChild(buttonContainerDiv);
-
-  // Añadir el contentDiv y el h2 al filterContainerDiv
   filterContainerDiv.appendChild(h2);
   filterContainerDiv.appendChild(contentDiv);
-
-  // Añadir el filterContainerDiv al main
   main.appendChild(filterContainerDiv);
-
-  // Devolver el h1 y el main como elementos separados o juntos en un contenedor
   return [h1, main];
 }

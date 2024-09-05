@@ -12,7 +12,7 @@
   text-decoration: none;
   text-transform: capitalize;
   transition: .2s linear;
-  font-size: 26px;
+  font-size: 15px;
 }
 
 
@@ -851,10 +851,9 @@ textarea[name="user-input"]:focus {
 }
 
 h2 {
-  font-size: var(--fs-large);
-  font-weight: var(--fw-bold);
   display: inline;
-  color: var(--tx-color-light);
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .nav__btn {
@@ -870,9 +869,7 @@ h2 {
   width: fit-content;
   height: 40px;
   padding: 0 12px;
-  font-family: var(--ff-sans);
-  font-size: var(--fs-normal);
-  color: var(--clr-primary-dark);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -992,8 +989,6 @@ button {
 .containerForm__link__text{
   color: var(--tx-color-dark);
 }
-
-
 /*comienza los Estilos para api key.js*/
 
 

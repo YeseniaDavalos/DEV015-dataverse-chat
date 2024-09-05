@@ -57,8 +57,6 @@ export const renderItems = (data) => {
     dl.appendChild(ddPetSize);
     ddPetSize.innerHTML = item.facts["petSize"];
 
-
-    // Crear botón de chat
     const chat = document.createElement('button');
     chat.classList.add('icons');
     chat.id = 'button-chat';
@@ -66,7 +64,6 @@ export const renderItems = (data) => {
 
     li.appendChild(chat);
 
-    // Añadir los event listeners para el chat 
     chat.addEventListener('click', () => 
       navigateTo("/chat", { id: item.id })
     );

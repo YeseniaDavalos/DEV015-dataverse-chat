@@ -1,4 +1,5 @@
-import { filterData, computeStats, sortData } from './lib/dataFunctions.js';
+import { filterData, computeStats, sortData } from '../src/lib/dataFunctions.js';
+
 import { data as testData } from './data.js';
 //import { fakeData } from './dataFunctions.spec.js';
 //llamar uno con pet, petSize y gender

@@ -1,4 +1,3 @@
-// src/views/Home.js
 import { Header } from "../components/Header.js";
 import { Section } from "../components/Section.js";
 import { mainFilter } from "../components/mainFilter.js";
@@ -6,7 +5,6 @@ import { Footer } from "../components/Footer.js";
 import { renderItems } from "../view.js";
 import { filterData, sortData } from '../lib/dataFunctions.js';
 import data from "../data/dataset.js";
-
 
 export function Home() {
   const headerEl = Header();
@@ -20,18 +18,15 @@ export function Home() {
   viewEl.appendChild(h1);
   viewEl.appendChild(main);
 
-  // Mostrar datos iniciales
   let filteredData = data;
   const showData = renderItems(filteredData);
   viewEl.appendChild(showData);
 
-  // Elementos de filtro
   const filterType = main.querySelector("#filter-select");
   const filterGender = main.querySelector('[data-testid="select-filter"]');
   const filterSize = main.querySelector("#size-select");
   const sort = main.querySelector("#ordenar");
 
-  // Listeners para los eventos de los filtros
   filterType.addEventListener("change", function () {
     updateFilteredData();
   });
@@ -48,7 +43,6 @@ export function Home() {
     updateFilteredData();
   });
 
-  // Filtrar y ordenar los datos según la entrada del usuario
   function updateFilteredData() {
     viewEl.innerHTML = '';
     filteredData = filterData(data, "pet", filterType.value);
@@ -63,8 +57,6 @@ export function Home() {
     }
     viewEl.appendChild(renderItems(filteredData));
   }
-
-  // Botón para limpiar los filtros
   const clear = main.querySelector("#reset-button");
   clear.addEventListener("click", function () {
     filterType.value = "";
@@ -75,10 +67,6 @@ export function Home() {
     viewEl.innerHTML = "";
     viewEl.appendChild(showData);
   });
-
-
-
   viewEl.appendChild(footerEl);
-
   return viewEl;
 }

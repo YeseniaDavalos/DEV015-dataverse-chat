@@ -16,7 +16,7 @@ export const sortData = (data, sortBy, sortOrder) => {
 };
 
 export const filterData = (data, filterBy, value) => {
-  const filterGender = data.filter((item) => item.facts[filterBy] === value); //le damos un valor al filtro que llamamos de nuestra data.js
+  const filterGender = data.filter((item) => item.facts[filterBy] === value);
   return filterGender;
 };
 
@@ -67,5 +67,4 @@ export const computeStats = (data) => {
     petSizeSmallAvg: petSizeSmallAvg.toFixed(2),
     petSizeBigAvg: petSizeBigAvg.toFixed(2),
   };
-
 };
