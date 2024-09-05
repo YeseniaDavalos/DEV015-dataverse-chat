@@ -593,7 +593,7 @@ dd {
   display: grid;
   grid-template-columns: min-content 1fr;
   column-gap: 1.5rem;
-  border-bottom: 1px solid var(--clr-chat-division);
+  border-bottom: 1px solid #7A7A7A;
 }
 
 .chat__title__arrow {
@@ -630,13 +630,13 @@ dd {
 }
 
 .chat__details__name {
-  font-size: var(--fs-large) !important;
-  color: var(--tx-color-dark);
+  color: #4F2E1D;
+  font-size: 16px;
 }
 
 .chat__details__status {
-  font-size: var(--fs-small) !important;
-  color: var(--clr-primary-dark);
+  color: #7A7A7A;
+  font-size: 12px;
 }
 
 .overflow {
@@ -692,7 +692,7 @@ dd {
   grid-row: 3;  
   display: grid;
   padding: 2rem 2rem;
-  border-top: 1px solid var(--clr-chat-division);
+  border-top: 1px solid #7A7A7A;
   position: relative;
 }
 
@@ -768,7 +768,7 @@ textarea[name="user-input"]:focus {
   grid-template-rows: repeat(3, min-content);
   row-gap: 2rem;
   background: #fff;
-  padding-bottom: 2rem;
+  /*padding-bottom: 2rem;*/
 }
 
 .data__image {
@@ -780,7 +780,7 @@ textarea[name="user-input"]:focus {
 .data__image__background {
   width: 100%;
   height: auto;
-  max-height: 200px;
+  max-height: 380px;
   object-fit: cover;
   display: block;
 }
@@ -825,7 +825,7 @@ textarea[name="user-input"]:focus {
 /*comienza los Estilos para Nav.js*/
 .nav {
   width: 100%;
-  height: 70px;
+  height: 75px;
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -846,7 +846,7 @@ textarea[name="user-input"]:focus {
 }
 
 .nav__logo__image {
-  height: 60px;
+  height: 66px;
   align-self: center;
 }
 

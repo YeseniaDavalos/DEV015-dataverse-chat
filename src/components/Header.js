@@ -1,147 +1,158 @@
-export const mainFilter = () => {
+export const Header = () => {
+  // Crear el elemento header
+  const headerEl = document.createElement('header');
+
+  // Crear el label
+  const label = document.createElement('label');
+  label.setAttribute('for', 'toggler');
+  label.classList.add('fas', 'fa-bars');
+
+  // Crear el input checkbox
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = 'toggler';
+
+  // Crear el enlace con el logo
+  const logoLink = document.createElement('a');
+  logoLink.href = '#';
+
+  const logoImg = document.createElement('img');
+  logoImg.src = 'img/Logo (1).png';
+  logoImg.alt = 'Logo';
+  logoImg.classList.add('logo');
+
+  logoLink.appendChild(logoImg);
+
+  // Crear la barra de navegación
+  const nav = document.createElement('nav');
+  nav.classList.add('navbar');
+
+  const navLinks = [
+    { href: '#filterSelect', text: 'Filter' },
+    { href: '#stadistics', text: 'Statistics' },
+    { href: '#animals', text: 'About us' },
+    { href: '#donate', text: 'Donate' },
+    { href: '#contact', text: 'Contact us' },
+  ];
+
+  navLinks.forEach(linkInfo => {
+    const a = document.createElement('a');
+    a.href = linkInfo.href;
+    a.textContent = linkInfo.text;
+    nav.appendChild(a);
+  });
+
+  // Crear el h1 vacío
   const h1 = document.createElement('h1');
-  h1.classList.add('heading');
-  h1.id = 'filterSelect';
-  h1.textContent = 'Our Animals';
 
-  const main = document.createElement('main');
+  // Crear el contenedor de iconos
+  const iconsDiv = document.createElement('div');
+  iconsDiv.classList.add('icons');
 
-  const filterContainerDiv = document.createElement('div');
-  filterContainerDiv.classList.add('filter-container');
+  // Crear el dialog
+  const dialog = document.createElement('dialog');
+  dialog.id = 'dialog';
+  dialog.classList.add('modal');
 
-  const h2 = document.createElement('h2');
-  h2.classList.add('handle');
-    
-  const span = document.createElement('span');
-  span.classList.add('label-style');
-  span.textContent = 'I want to see:';
+  // Crear el formulario
+  const saveForm = document.createElement('form');
+  saveForm.id = 'saveForm';
 
-  h2.appendChild(span);
+  // Crear el botón de cierre
+  const closeButton = document.createElement('button');
+  closeButton.id = 'jsbutton';
+  closeButton.type = 'submit';
+  closeButton.setAttribute('aria-label', 'close');
+  closeButton.setAttribute('formmethod', 'dialog');
+  closeButton.setAttribute('formnovalidate', '');
+  closeButton.textContent = 'X';
 
-  const contentDiv = document.createElement('div');
-  contentDiv.classList.add('content');
+  // Crear el título
+  const title = document.createElement('h2');
+  title.id = 'dialogid';
+  title.textContent = 'Api Key Admin';
 
-  const filterSelectLabel = document.createElement('label');
-  filterSelectLabel.setAttribute('for', 'filter-select');
+  // Crear el párrafo de descripción
+  const description = document.createElement('p');
+  description.textContent = 'From here you can manage the API Key to use';
 
-  const filterSelect = document.createElement('select');
-  filterSelect.id = 'filter-select';
-  filterSelect.name = 'campo';
+  // Crear el párrafo con la etiqueta del input
+  const lengthParagraph = document.createElement('p');
+  lengthParagraph.classList.add('length');
 
-  const option1 = document.createElement('option');
-  option1.value = '';
-  option1.textContent = 'Select Pet';
+  const labelForInput = document.createElement('label');
+  labelForInput.textContent = 'Api Key:';
 
-  const option2 = document.createElement('option');
-  option2.value = 'Dog';
-  option2.textContent = 'Dog';
+  const apiKeyInput = document.createElement('input');
+  apiKeyInput.id = 'apiKeyInput';
+  apiKeyInput.type = 'password';
+  apiKeyInput.min = '0';
+  apiKeyInput.max = '10';
+  apiKeyInput.step = '1';
+  apiKeyInput.name = 'api key';
+  apiKeyInput.required = true;
 
-  const option3 = document.createElement('option');
-  option3.value = 'Cat';
-  option3.textContent = 'Cat';
+  labelForInput.appendChild(apiKeyInput);
+  lengthParagraph.appendChild(labelForInput);
 
-  filterSelect.appendChild(option1);
-  filterSelect.appendChild(option2);
-  filterSelect.appendChild(option3);
+  // Crear el segundo párrafo para los botones de submit y reset
+  const buttonsParagraph = document.createElement('p');
+  buttonsParagraph.classList.add('length');
 
-  contentDiv.appendChild(filterSelectLabel);
-  contentDiv.appendChild(filterSelect);
+  const submitButton = document.createElement('button');
+  submitButton.type = 'submit';
+  submitButton.textContent = 'Save';
 
-  const genderSelectLabel = document.createElement('label');
-  genderSelectLabel.setAttribute('for', 'gender-select');
+  const resetButton = document.createElement('button');
+  resetButton.id = 'reset';
+  resetButton.type = 'reset';
+  resetButton.textContent = 'Delete';
 
-  const genderSelect = document.createElement('select');
-  genderSelect.id = 'gender-select';
-  genderSelect.name = 'campo1';
-  genderSelect.setAttribute('data-testid', 'select-filter');
+  buttonsParagraph.appendChild(submitButton);
+  buttonsParagraph.appendChild(resetButton);
 
-  const option4 = document.createElement('option');
-  option4.value = '';
-  option4.textContent = 'All gender';
+  // Añadir todos los elementos dentro del formulario
+  saveForm.appendChild(closeButton);
+  saveForm.appendChild(title);
+  saveForm.appendChild(description);
+  saveForm.appendChild(lengthParagraph);
+  saveForm.appendChild(buttonsParagraph);
 
-  const option5 = document.createElement('option');
-  option5.value = 'Female';
-  option5.textContent = 'Female';
+  // Añadir el formulario dentro del dialog
+  dialog.appendChild(saveForm);
 
-  const option6 = document.createElement('option');
-  option6.value = 'Male';
-  option6.textContent = 'Male';
+  // Crear el botón para abrir el modal
+  const modalButton = document.createElement('button');
+  modalButton.id = 'modal';
+  modalButton.textContent = 'Open Api Key';
 
-  genderSelect.appendChild(option4);
-  genderSelect.appendChild(option5);
-  genderSelect.appendChild(option6);
+  // Añadir el dialog y el botón dentro del contenedor principal
+  iconsDiv.appendChild(dialog);
+  iconsDiv.appendChild(modalButton);
 
-  contentDiv.appendChild(genderSelectLabel);
-  contentDiv.appendChild(genderSelect);
+  // Añadir todos los elementos al header
+  headerEl.appendChild(label);
+  headerEl.appendChild(input);
+  headerEl.appendChild(logoLink);
+  headerEl.appendChild(nav);
+  headerEl.appendChild(h1);
+  //headerEl.appendChild(chat);
+  headerEl.appendChild(iconsDiv);
 
-  const sizeSelectLabel = document.createElement('label');
-  sizeSelectLabel.setAttribute('for', 'size-select');
+  // Añadir los event listeners para el modal
 
-  const sizeSelect = document.createElement('select');
-  sizeSelect.id = 'size-select';
-  sizeSelect.name = 'campo2';
+  modalButton.addEventListener('click', () => {
+    dialog.showModal();
+  });
 
-  const option7 = document.createElement('option');
-  option7.value = '';
-  option7.textContent = 'Pet size';
+  closeButton.addEventListener('click', () => {
+    dialog.close();
+  });
 
-  const option8 = document.createElement('option');
-  option8.value = 'Small';
-  option8.textContent = 'Small';
+  saveForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    dialog.close();
+  });
 
-  const option9 = document.createElement('option');
-  option9.value = 'Big';
-  option9.textContent = 'Big';
-
-  sizeSelect.appendChild(option7);
-  sizeSelect.appendChild(option8);
-  sizeSelect.appendChild(option9);
-
-  contentDiv.appendChild(sizeSelectLabel);
-  contentDiv.appendChild(sizeSelect);
-
-  const sortSelectLabel = document.createElement('label');
-  sortSelectLabel.setAttribute('for', 'ordenar');
-
-  const sortSelect = document.createElement('select');
-  sortSelect.setAttribute('data-testid', 'select-sort');
-  sortSelect.name = 'sort';
-  sortSelect.id = 'ordenar';
-
-  const option10 = document.createElement('option');
-  option10.value = '';
-  option10.textContent = 'Order A-Z';
-
-  const option11 = document.createElement('option');
-  option11.value = 'asc';
-  option11.textContent = 'A-Z';
-
-  const option12 = document.createElement('option');
-  option12.value = 'desc';
-  option12.textContent = 'Z-A';
-
-  sortSelect.appendChild(option10);
-  sortSelect.appendChild(option11);
-  sortSelect.appendChild(option12);
-
-  contentDiv.appendChild(sortSelectLabel);
-  contentDiv.appendChild(sortSelect);
-
-  const buttonContainerDiv = document.createElement('div');
-  buttonContainerDiv.id = 'button-container';
-
-  const clearButton = document.createElement('button');
-  clearButton.id = 'reset-button';
-  clearButton.textContent = 'Clear';
-
-  buttonContainerDiv.appendChild(clearButton);
-
-  contentDiv.appendChild(buttonContainerDiv);
-
-  filterContainerDiv.appendChild(h2);
-  filterContainerDiv.appendChild(contentDiv);
-
-  main.appendChild(filterContainerDiv);
-
-  return [h1, main];
+  return headerEl;
 }
