@@ -3,6 +3,8 @@ import { getApiKey } from "./apiKey.js";
 export const communicateWithOpenAI = (messages) => { 
   const APIKEY = getApiKey();
 
+
+/*
   if (!APIKEY) {
     return Promise.reject(new Error("API KEY no encontrada, por favor ingrese una API KEY desde el botón Api."));
   }
@@ -44,8 +46,12 @@ export const communicateWithOpenAI = (messages) => {
       }
       return response.json(); 
     }) 
+
     .catch((error) => {
       throw error;
     });
 };
 
+*/
+
+}
