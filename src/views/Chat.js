@@ -1,9 +1,9 @@
 import data from '../data/dataset.js';
-import { Nav } from "../components/Nav.js";
-import { navigateTo } from "../router.js";
-import { ChatIndividual } from "../components/ChatIndividual.js";
+import { Nav } from "../components/Nav.js";  
+import { navigateTo } from "../router.js";  
+import { ChatIndividual } from "../components/ChatIndividual.js"; 
 
-export function Chat(props) {
+export function Chat(props) { 
   const chatView = document.createElement("div");
   chatView.classList.add("chat");
 
@@ -11,16 +11,16 @@ export function Chat(props) {
   const mainElement = document.createElement("main");
   mainElement.classList.add("chat__main");
   chatView.appendChild(mainElement);
-  mainElement.appendChild(ChatIndividual(props));
+  mainElement.appendChild(ChatIndividual(props)); 
 
-  const itemData = data.find((item) => item.id === props.id);
+  const itemData = data.find((item) => item.id === props.id); 
 
   if (!itemData) {
     navigateTo("/404");
     return chatView;
   }
 
-  document.title = `Chat con ${itemData.name}`;
+  document.title = `Chat con ${itemData.name}`; 
   let faviconElement = document.querySelector("[type='image/x-icon']");
   if (!faviconElement) {
     faviconElement = document.createElement('link');
@@ -40,6 +40,7 @@ export function Chat(props) {
   dataElement.setAttribute("itemtype", "https://schema.org/CreativeWork");
   dataElement.setAttribute("data-id", itemData.id);
 
+  
   dataElement.innerHTML = `
       <div class="data__image">
         <img class="data__image__background" src="${itemData.imageUrl}" alt="${itemData.name}" itemprop="image"/>

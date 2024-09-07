@@ -1,5 +1,5 @@
 import { navigateTo } from "../router.js";
-import { setApiKey, getApiKey } from "../lib/apiKey.js";
+import { setApiKey, getApiKey } from "../lib/apiKey.js"; 
 
 export function ApiKey() {
   const apiKeyView = document.createElement("div");
@@ -7,14 +7,16 @@ export function ApiKey() {
 
   document.title = "ApiKey";
 
-  let faviconElement = document.querySelector("[type='image/x-icon']");
+  let faviconElement = document.querySelector("[type='image/x-icon']"); 
   if (!faviconElement) {
-    faviconElement = document.createElement('link');
+    faviconElement = document.createElement('link'); 
     faviconElement.rel = 'icon';
     faviconElement.type = 'image/x-icon';
     document.head.appendChild(faviconElement);
   }
   faviconElement.href = "assets/logos/logo-color.svg";
+
+
 
   apiKeyView.innerHTML = `
       <div class="containerForm">
@@ -47,20 +49,20 @@ export function ApiKey() {
       return;
     }
 
-    const inputMessage = document.createElement("span");
+    const inputMessage = document.createElement("span"); 
     inputMessage.classList.add("input__message");
     containerForm.insertBefore(inputMessage, inputElement);
 
-    const updateMaskedApiKey = (apiKey) => {
+    const updateMaskedApiKey = (apiKey) => { 
       return `${apiKey.slice(0, 3)}${"•".repeat(apiKey.length - 6)}${apiKey.slice(-3)}`;
     };
 
-    let APIKEY = getApiKey();
+    let APIKEY = getApiKey(); 
     if (APIKEY) {
-      inputElement.value = updateMaskedApiKey(APIKEY);
+      inputElement.value = updateMaskedApiKey(APIKEY); 
     }
 
-    buttonSave.addEventListener("click", () => {
+    buttonSave.addEventListener("click", () => { 
       APIKEY = inputElement.value;
 
       if (APIKEY.length >= 10) {

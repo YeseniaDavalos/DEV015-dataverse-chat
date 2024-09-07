@@ -1,26 +1,28 @@
-let ROUTES = {};
+let ROUTES = {}; 
 let rootEl;
 
-export function setRootEl(el) {
+export function setRootEl(el) {  
   rootEl = el;
 }
 
-export const setRoutes = (routes) => {
+export const setRoutes = (routes) => {  
   if (typeof routes !== 'object') {
     throw new Error('Routes should be an object.');
   }
-  if (!routes['/NotFound']) { 
+  if (!routes['/NotFound']) {  
     throw new Error('Routes should define an /NotFound route.');
   }
   ROUTES = routes;
 };
 
+
 const queryStringToObject = (queryString) => {
-  const params = new URLSearchParams(queryString);
-  return Object.fromEntries(params.entries());
+  const params = new URLSearchParams(queryString); 
+  return Object.fromEntries(params.entries()); 
 };
 
-export const objectToQueryString = (props) => {
+
+export const objectToQueryString = (props) => { 
   if (Object.keys(props).length !== 0) {
     let str = '?';
     for (const i in props) {
@@ -37,7 +39,7 @@ export const objectToQueryString = (props) => {
   }
 };
 
-const renderView = (pathname, props = {}) => {
+const renderView = (pathname, props = {}) => { 
   if (!rootEl) {
     throw new Error('Root element is not set.');
   }
@@ -50,13 +52,17 @@ const renderView = (pathname, props = {}) => {
   rootEl.appendChild(viewEl);
 };
 
-export function onURLChange(location) {
+
+
+export function onURLChange(location) { 
   const { pathname, search } = location;
-  const queryObject = queryStringToObject(search);
-  renderView(pathname, queryObject);
+  const queryObject = queryStringToObject(search); 
+  renderView(pathname, queryObject); 
 }
 
-export const navigateTo = (pathname, props = {}) => {
+
+
+export const navigateTo = (pathname, props = {}) => { 
   const isRouteDefined = Object.prototype.hasOwnProperty.call(ROUTES, pathname);
   if (!isRouteDefined) {
     pathname = '/NotFound';
